@@ -1,0 +1,20 @@
+#!/usr/bin/python3
+
+import os
+from optparse import OptionParser
+
+parser = OptionParser()
+parser.add_option("-r", dest="remove", help="Remove folder.", default=False,  action="store_true")
+(options, args) = parser.parse_args()
+
+if len(args) > 0:
+
+    if options.remove:
+        os.system("sudo rm -r /opt/%s" % args[0])
+        print('Folder Removed!')
+        exit()
+
+    os.system("sudo mkdir /opt/%s" % args[0])
+    os.system("sudo chmod -R 777 /opt/%s" % args[0])
+    print('Folder Created!')
+    os.system("cd /opt/%s" % args[0])
